@@ -1,4 +1,4 @@
 #!/bin/bash
-mkdir prueba
-cd prueba
-echo "Prueba exitosa" > texto
+echo "Cambio de prueba para Jenkins" > mensaje.txt
+git add mensaje.txt
+git commit -m "Commit de prueba para verificar Jenkins"

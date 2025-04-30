@@ -1,4 +1,21 @@
 #!/bin/bash
-echo "Cambio de prueba para Jenkins" > mensaje.txt
-git add mensaje.txt
-git commit -m "Commit de prueba para verificar Jenkins"
+
+# Crear Dockerfile
+echo "FROM python:3" > Dockerfile
+echo "RUN pip install Flask" >> Dockerfile
+echo "WORKDIR /home/app" >> Dockerfile
+echo "COPY server.py ." >> Dockerfile
+echo "EXPOSE 5050" >> Dockerfile
+echo "CMD python3 /home/app/server.py" >> Dockerfile
+
+# Eliminar Docker anterior
+docker rm -f samrun 2>/dev/null
+
+# Crear la imagen
+docker build -t sample .
+
+# Ejecutar el contenedor
+docker run -d -p 5050:5050 --name samrun sample
+
+# Verificar que el contenedor está en ejecución
+docker ps -a
